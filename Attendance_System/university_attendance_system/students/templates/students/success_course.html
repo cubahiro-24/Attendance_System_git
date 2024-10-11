@@ -1,0 +1,122 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Success Page{% endblock %}
+
+{% block content %}
+    <h1>Success!</h1>
+    <p>Your course has been added successfully.</p>
+    <a href="{% url 'course_form' %}">Add Another Course</a>  <!-- Link back to course form -->
+
+    <h2>List of Courses:</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Course Code</th>
+                <th>Name</th>
+                <th>Hours</th>
+                <th>Lecturer</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for course in courses %}
+                <tr>
+                    <td>{{ course.course_code }}</td>
+                    <td>{{ course.name }}</td>
+                    <td>{{ course.hours }}</td>
+                    <td>{{ course.lecturer.name }}</td>
+                    <td>
+                        <form action="{% url 'modify_course' course.id %}" method="get" style="display:inline;">
+                            <button type="submit" class="btn btn-modify">Modify</button>
+                        </form>
+                        <form action="{% url 'delete_course' course.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-delete">Delete</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <style>
+        /* Basic styles for the body */
+        body {
+            font-family: Arial, sans-serif; /* Set font */
+            margin: 0;                     /* Remove default margin */
+            padding: 20px;                 /* Add padding */
+            background-color: #f9f9f9;     /* Light gray background */
+        }
+
+        /* Heading styles */
+        h1 {
+            color: #4CAF50;                 /* Green color */
+        }
+
+        /* Paragraph styles */
+        p {
+            font-size: 16px;                /* Font size */
+            color: #333;                    /* Darker text color */
+        }
+
+        /* Button styles */
+        .btn {
+            padding: 10px 15px;               /* Button padding */
+            border: none;                     /* Remove default border */
+            border-radius: 5px;              /* Rounded corners */
+            cursor: pointer;                  /* Pointer cursor */
+            font-size: 14px;                  /* Font size */
+            transition: background-color 0.3s; /* Smooth transition */
+        }
+
+        /* Modify button styles */
+        .btn-modify {
+            background-color: #4CAF50;       /* Green background */
+            color: white;                    /* White text */
+        }
+
+        .btn-modify:hover {
+            background-color: #45a049;       /* Darker green on hover */
+        }
+
+        /* Delete button styles */
+        .btn-delete {
+            background-color: #f44336;       /* Red background */
+            color: white;                    /* White text */
+        }
+
+        .btn-delete:hover {
+            background-color: #d32f2f;       /* Darker red on hover */
+        }
+
+        /* Table styles */
+        table {
+            width: 100%;                     /* Full width */
+            border-collapse: collapse;       /* Collapse borders */
+            margin-top: 20px;                /* Space above the table */
+        }
+
+        th, td {
+            border: 1px solid #ddd;          /* Light gray border */
+            padding: 8px;                    /* Cell padding */
+            text-align: left;                /* Left-aligned text */
+        }
+
+        th {
+            background-color: #f2f2f2;       /* Light gray background for headers */
+        }
+
+        /* Optional: Style for the link */
+        a {
+            display: inline-block;            /* Inline block for proper spacing */
+            margin-top: 20px;                /* Space above link */
+            text-decoration: none;            /* Remove underline */
+            color: #4CAF50;                   /* Green color */
+            font-weight: bold;                /* Bold text */
+        }
+
+        a:hover {
+            text-decoration: underline;       /* Underline on hover */
+        }
+    </style>
+{% endblock %}

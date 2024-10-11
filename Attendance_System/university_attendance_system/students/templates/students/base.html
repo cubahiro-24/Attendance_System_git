@@ -1,0 +1,64 @@
+<!-- base.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Page Title{% endblock %}</title>
+    <style>
+        /* Styles for the sidebar */
+        .sidebar {
+            height: 100%; /* Full height */
+            width: 200px; /* Sidebar width */
+            position: fixed; /* Fixed position */
+            top: 0; /* Align to top */
+            left: 0; /* Align to left */
+            background-color: #343a40; /* Dark background color */
+            color: #ffffff; /* White text color */
+            padding-top: 20px; /* Top padding */
+        }
+
+        .sidebar h2 {
+            color: #ffffff; /* White text for sidebar title */
+            text-align: center; /* Center align */
+            padding: 10px 0; /* Padding for title */
+        }
+
+        .sidebar a {
+            padding: 10px 15px; /* Link padding */
+            text-decoration: none; /* Remove underline */
+            font-size: 16px; /* Font size */
+            color: #ffffff; /* Link color */
+            display: block; /* Block display */
+        }
+
+        .sidebar a:hover {
+            background-color: #495057; /* Background color on hover */
+            color: #ffffff; /* White text on hover */
+        }
+
+        .content {
+            margin-left: 220px; /* Push content to the right */
+            padding: 20px; /* Content padding */
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Student Management Attendancy</h2>
+        <a href="{% url 'student_form' %}">Student Form</a>
+        <a href="{% url 'success_student_url' %}">Student List</a>
+        <a href="{% url 'lecturer_form' %}">Lecturer Form</a>
+        <a href="{% url 'success_lecturer_url' %}">Lecturer list</a>
+        <a href="{% url 'course_form' %}">Course Form</a>
+        <a href="{% url 'success_course_url' %}">Course List</a>
+        <a href="{% url 'admin_form' %}">Admin Form</a>
+        <a href="{% url 'success_admin' %}">Admin List</a>
+        <a href="{% url 'attendance_per_student' %}">Attendance List</a>
+    </div>
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+</body>
+</html>

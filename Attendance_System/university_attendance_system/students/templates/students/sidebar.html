@@ -1,0 +1,35 @@
+<!-- sidebar.html -->
+<div class="sidebar">
+    <h2>Navigation</h2>
+    <a href="{% url 'attendance_add' %}">Add Attendance</a>
+    <a href="{% url 'attendance_display' %}">Display Attendance</a>
+    <a href="{% url 'attendance_per_student' %}">Attendance per Student</a>
+    <a href="{% url 'attendance_per_course' %}">Attendance per Course</a>
+    <a href="{% url 'admin_dashboard' %}">Admin Dashboard</a>
+    <!-- Add more links as needed -->
+</div>
+
+<style>
+    .sidebar {
+        width: 200px;
+        background-color: #333;
+        color: white;
+        padding: 15px;
+        height: 100vh; /* Full-height sidebar */
+        position: fixed; /* Fixes the sidebar to the left */
+    }
+    .sidebar h2 {
+        color: #fff;
+        text-align: center;
+    }
+    .sidebar a {
+        display: block;
+        color: white;
+        padding: 10px;
+        text-decoration: none;
+        transition: background 0.3s;
+    }
+    .sidebar a:hover {
+        background-color: #575757;
+    }
+</style>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Attendance</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'students/admin_style.css' %}">
+    <style>
+        /* Basic form styling */
+        form {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Add Attendance</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.student.label }}
+        {{ form.student }}
+        {{ form.course.label }}
+        {{ form.course }}
+        {{ form.lecturer.label }}
+        {{ form.lecturer }}
+        {{ form.status.label }}
+        {{ form.status }}
+        {{ form.date.label }}
+        {{ form.date }}
+        <input type="submit" value="Add Attendance">
+    </form>
+</body>
+</html>

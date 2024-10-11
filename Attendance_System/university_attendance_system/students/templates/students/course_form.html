@@ -1,0 +1,64 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Add Course{% endblock %}
+
+{% block content %}
+<h1>Add Course</h1>
+<form method="POST">
+    {% csrf_token %}
+    <!-- Render form fields with labels -->
+    <label for="course_code">{{ form.course_code.label }}</label>
+    {{ form.course_code }}
+
+    <label for="name">{{ form.name.label }}</label>
+    {{ form.name }}
+
+    <label for="hours">{{ form.hours.label }}</label>
+    {{ form.hours }}
+
+    <label for="lecturer">{{ form.lecturer.label }}</label>
+    {{ form.lecturer }} <!-- Combo box for lecturers -->
+
+    <input type="submit" value="Submit">
+</form>
+
+<!-- Inline form styling -->
+<style>
+    form {
+        width: 100%;
+        max-width: 500px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    input, select, textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border-radius: 4px;
+        border: 1px solid #ccc;
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px;
+        border: none;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+
+    label {
+        font-weight: bold;
+        margin-bottom: 5px;
+        display: inline-block;
+    }
+</style>
+{% endblock %}

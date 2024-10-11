@@ -1,0 +1,13 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Modify Student{% endblock %}
+
+{% block content %}
+<h1>Modify Student</h1>
+
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}  <!-- This will render the form fields -->
+    <button type="submit">Save Changes</button>
+</form>
+{% endblock %}

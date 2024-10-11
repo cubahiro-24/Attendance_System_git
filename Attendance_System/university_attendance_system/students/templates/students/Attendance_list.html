@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attendance List</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'students/admin_style.css' %}">
+    <style>
+        /* Basic table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .button {
+            background-color: #4CAF50; /* Green for modify button */
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-right: 5px; /* Space between buttons */
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+        .delete-button {
+            background-color: #f44336; /* Red for delete button */
+        }
+        .delete-button:hover {
+            background-color: #e53935; /* Darker red on hover */
+        }
+    </style>
+</head>
+<body>
+    <h1>Attendance List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Course</th>
+                <th>Lecturer</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attendance in attendances %}
+            <tr>
+                <td>{{ attendance.student }}</td>
+                <td>{{ attendance.course }}</td>
+                <td>{{ attendance.lecturer }}</td>
+                <td>{{ attendance.get_status_display }}</td>  <!-- Displays the status with the label -->
+                <td>{{ attendance.date }}</td>
+                <td>
+                    <a href="{% url 'modify_attendance' attendance.id %}" class="button">Modify</a>
+                    <a href="{% url 'delete_attendance' attendance.id %}" class="button delete-button">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add_attendance' %}" class="button">Add Attendance</a>
+</body>
+</html>

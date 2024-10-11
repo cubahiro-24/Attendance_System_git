@@ -1,0 +1,87 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Attendance List by Student{% endblock %}
+
+{% block content %}
+    <h1>Attendance List</h1>
+    <form method="POST">
+        {% csrf_token %}
+        <label for="student_name">Search by Student Name:</label>
+        <input type="text" name="student_name" id="student_name" placeholder="Enter student name">
+
+        <label for="course">Select Course:</label>
+        <select name="course" id="course">
+            <option value="">All Courses</option>
+            {% for course in courses %}
+            <option value="{{ course.id }}">{{ course.name }}</option>
+            {% endfor %}
+        </select>
+
+        <label for="date">Select Date:</label>
+        <input type="date" name="date" id="date">
+
+        <input type="submit" value="Filter" class="button">
+    </form>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Student</th>
+                <th>Course</th>
+                <th>Lecturer</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for attendance in attendance_records %}
+            <tr>
+                <td>{{ attendance.student }}</td>
+                <td>{{ attendance.course }}</td>
+                <td>{{ attendance.lecturer }}</td>
+                <td>{{ attendance.get_status_display }}</td>  <!-- Displays the status with the label -->
+                <td>{{ attendance.date }}</td>
+                <td>
+                    <a href="{% url 'modify_attendance' attendance.id %}" class="button">Modify</a>
+                    <a href="{% url 'delete_attendance' attendance.id %}" class="button delete-button">Delete</a>
+                </td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="6">No attendance records found.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'add_attendance' %}" class="button">Add Attendance</a>
+
+    <style>
+        /* Basic table styling */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f4f4f4;
+        }
+        .button {
+            background-color: #4CAF50; /* Green for buttons */
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            text-decoration: none;
+            cursor: pointer;
+            margin-right: 5px; /* Space between buttons */
+        }
+        .button:hover {
+            background-color: #45a049;
+        }
+    </style>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'students/base.html' %}
+
+{% block title %}Admin Registration Form{% endblock %}
+
+{% block content %}
+    <h1>Add Admin</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.first_name.label }}
+        {{ form.first_name }}
+        {{ form.last_name.label }}
+        {{ form.last_name }}
+        {{ form.phone.label }}
+        {{ form.phone }}
+        {{ form.email.label }}
+        {{ form.email }}
+        {{ form.username.label }}
+        {{ form.username }}
+        {{ form.password.label }}
+        {{ form.password }}
+        <input type="submit" value="Submit">
+    </form>
+
+    <style>
+        /* Basic form styling */
+        form {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+    </style>
+{% endblock %}

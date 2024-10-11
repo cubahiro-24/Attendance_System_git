@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modify Attendance</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'students/admin_style.css' %}">
+</head>
+<body>
+    <h1>Modify Attendance</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.student.label }}
+        {{ form.student }}
+        {{ form.course.label }}
+        {{ form.course }}
+        {{ form.lecturer.label }}
+        {{ form.lecturer }}
+        {{ form.status.label }}
+        {{ form.status }}
+        {{ form.date.label }}
+        {{ form.date }}
+        <input type="submit" value="Save Changes">
+    </form>
+</body>
+</html>
